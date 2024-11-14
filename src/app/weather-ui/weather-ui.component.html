@@ -1,0 +1,30 @@
+<ion-header scrollY="false">
+  <ion-toolbar>
+    <ion-title>Погода в {{ weatherData?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            {{ weatherData?.main?.temp | K2CTemperatureConverter }}°C
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <div class="weather-details">
+            <p>Влажность: {{ weatherData?.main?.humidity }}%</p>
+            <p>Ветер: {{ weatherData?.wind?.speed }} м/с</p>
+          </div>
+          <div class="weather-icon">
+            <img *ngIf="weatherData?.weather"
+                 [src]="'https://openweathermap.org/img/w/' + weatherData.weather[0]?.icon + '.png'"
+                 alt="Weather icon">
+            <p *ngIf="weatherData?.weather">
+              {{ weatherData.weather[0]?.description }}
+            </p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
